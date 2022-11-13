@@ -1,16 +1,16 @@
 <div class="container">
     <div class="logo">
         <img src="../../../assets/imgs/buzzFeed-logo.png" alt="BuzzFeed logo">
-        <h3>Título</h3>
+        <h3>Quiz: {{ title }}</h3>
     </div>
-    <div class="questions">
-        <h3>questão selecionada</h3>
+    <div *ngIf="!finished" class="questions">
+        <h3>{{ questionSelected.question }}</h3>
     </div>
-    <div class="options">
-        <button class="btn-option">optionName</button>
+    <div *ngIf="!finished" class="options">
+        <button *ngFor="let option of questionSelected.options; let i = index" (click)="playerChoice(option.alias)" class="btn-option">{{ option.name }}</button>
     </div>
-    <div class="results">
-        <h1>O seu resultado é:</h1>
-        <p>resposta selecionada</p>
+    <div *ngIf="finished" class="results">
+        <h3>O seu resultado é:</h3>
+        <p>{{ answerSelected }}</p>
     </div>
 </div>
